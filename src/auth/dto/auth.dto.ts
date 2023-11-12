@@ -9,3 +9,8 @@ export type AuthToken = {
   accessToken: string;
   refreshToken: string;
 };
+
+export type JwtDto = JwtPayload & {
+  iat: number;
+  exp: number;
+};

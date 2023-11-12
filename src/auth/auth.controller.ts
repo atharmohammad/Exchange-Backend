@@ -1,4 +1,4 @@
-import { Controller, Patch, Post, Query } from '@nestjs/common';
+import { Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { RegisterDto } from '../user/dto/register.dto';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
@@ -18,5 +18,10 @@ export class AuthController {
   async login(@Query() data: LoginDto) {
     const user = await this.userService.login(data);
     return this.authService.generateAuthTokens(user);
+  }
+
+  @Get('refresh-token/:refresh-token')
+  async refreshAccessToken(@Query() refreshToken: string) {
+    return this.authService.refreshAccessToken(refreshToken);
   }
 }
