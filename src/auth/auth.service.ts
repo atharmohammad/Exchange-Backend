@@ -8,13 +8,11 @@ export class AuthService {
   constructor() {}
 
   generateAccessToken(jwtPayload: JwtPayload) {
-    // todo: sanitize payload
     const accessToken = this.jwtService.sign(jwtPayload);
     return accessToken;
   }
 
   generateRefereshToken(jwtPayload: JwtPayload) {
-    // todo: sanitize payload
     const JWT_SECRET = process.env.JWT_SECRET;
     const refreshToken = this.jwtService.sign(jwtPayload, {
       secret: JWT_SECRET,
