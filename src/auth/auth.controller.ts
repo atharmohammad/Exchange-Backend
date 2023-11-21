@@ -10,6 +10,7 @@ export class AuthController {
   private readonly userService: UserService;
   private readonly authService: AuthService;
   private readonly passwordService: PasswordService;
+
   @Post('signup')
   async signup(@Query() data: RegisterDto) {
     const user = await this.userService.signup(data);
@@ -30,5 +31,10 @@ export class AuthController {
   @Get('request/one-time-password/:address')
   async requestOneTimePassword(@Query() address: string) {
     return this.passwordService.generateOneTimePassword(address);
+  }
+
+  @Get('connect-wallet/:address/:encoding')
+  async connectWallet(@Query() address: string, @Query() encoding: string) {
+    return this.authService.connectWallet(address, encoding);
   }
 }
