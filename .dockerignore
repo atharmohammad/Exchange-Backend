@@ -1,0 +1,8 @@
+.git/
+.github/
+.gitconfig/
+node_modules/
+dist/
+
+.dockerignore
+.env
