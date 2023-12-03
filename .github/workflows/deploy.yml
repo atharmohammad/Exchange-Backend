@@ -15,6 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: set lower case envs
+        run: echo "REPOSITORY=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]' | tr '/' '_')" >> $GITHUB_ENV
+
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -30,6 +33,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{github.actor}}/${{ github.repository }}:latest,ghcr.io/${{github.actor}}/${{ github.repository }}:${{ github.sha }}
+          tags: ghcr.io/${{github.actor}}/${{env.REPOSITORY}}:latest,ghcr.io/${{github.actor}}/${{env.REPOSITORY}}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
