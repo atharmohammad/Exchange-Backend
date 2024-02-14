@@ -43,6 +43,9 @@ jobs:
     needs: docker-build
 
     steps:
+      - name: set lower case envs
+        run: echo "REPOSITORY=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]' | tr '/' '_')" >> $GITHUB_ENV
+
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
         with:
