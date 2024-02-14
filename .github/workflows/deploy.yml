@@ -56,4 +56,4 @@ jobs:
             docker stop ${{env.REPOSITORY}} || true
             docker rm ${{env.REPOSITORY}} || true
             docker pull ghcr.io/${{github.actor}}/${{env.REPOSITORY}}:latest
-            docker run -d --name ${{env.REPOSITORY}} -p 3005:3005 ghcr.io/${{github.actor}}/${{env.REPOSITORY}}:latest
+            docker run -d --name ${{env.REPOSITORY}} -p 80:3005 ghcr.io/${{github.actor}}/${{env.REPOSITORY}}:latest
